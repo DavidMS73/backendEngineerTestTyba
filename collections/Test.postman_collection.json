@@ -1,0 +1,372 @@
+{
+	"info": {
+		"_postman_id": "e1f3ed7c-a3a7-497a-a6a2-a36a35726733",
+		"name": "Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User register",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"idUser\", data.insertedId);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tybaback\",\r\n    \"name\": \"Tyba\",\r\n    \"password\": \"Tybaback1\",\r\n    \"repeat_password\": \"Tybaback1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User register 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"idUser\", data.insertedId);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tybaback2\",\r\n    \"name\": \"Tyba2\",\r\n    \"password\": \"Tybaback2\",\r\n    \"repeat_password\": \"Tybaback2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", data.token);\r",
+							"postman.setGlobalVariable(\"refreshToken\", data.refreshToken);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tybaback\",\r\n    \"password\": \"Tybaback1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User login 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", data.token);\r",
+							"postman.setGlobalVariable(\"refreshToken\", data.refreshToken);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"tybaback2\",\r\n    \"password\": \"Tybaback2\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Refresh token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", data.token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/token",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"token"
+					]
+				},
+				"description": "Permite refrescar un token para que el usuario pueda continuar usando su sesión."
+			},
+			"response": []
+		},
+		{
+			"name": "Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Permite obtener todos los usuarios siempre y cuando se esté logueado."
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"token\", data.token);\r",
+							"postman.setGlobalVariable(\"refreshToken\", data.refreshToken);\r",
+							"tests[\"No genera error en el Post\"] = responseCode.code === 200;"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refreshToken\": \"{{refreshToken}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/users/logout",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users",
+						"logout"
+					]
+				},
+				"description": "Cierra sesión de un usuario. Esto se logra borrando las variables de token y en la base de datos se elimina el token que permite refrescar."
+			},
+			"response": []
+		},
+		{
+			"name": "Restaurants nearby",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"next_page_token\", data.next_page_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/restaurants/?latitude=26.111809&longitude=-80.135394",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"restaurants",
+						""
+					],
+					"query": [
+						{
+							"key": "latitude",
+							"value": "26.111809"
+						},
+						{
+							"key": "longitude",
+							"value": "-80.135394"
+						}
+					]
+				},
+				"description": "Recupera la información de los restaurantes cercanos según las coordenadas dadas. Sólo es funcional para usuarios logueados.\n\nSe puede añadir el query param \npagetoken: {{value}}\npara obtener la siguiente página.\nTenga en cuenta que si no se pone, retornará 20 resultados y en la respuesta dará el valor next_page_token el cual servirá para consultar la página siguiente. Este valor se guarda en la variable global {{next_page_token}}."
+			},
+			"response": []
+		},
+		{
+			"name": "History",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setGlobalVariable(\"next_page_token\", data.next_page_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/history",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"history"
+					]
+				},
+				"description": "Recupera la información de los restaurantes cercanos según las coordenadas dadas. Sólo es funcional para usuarios logueados.\n\nSe puede añadir el query param \npagetoken: {{value}}\npara obtener la siguiente página.\nTenga en cuenta que si no se pone, retornará 20 resultados y en la respuesta dará el valor next_page_token el cual servirá para consultar la página siguiente. Este valor se guarda en la variable global {{next_page_token}}."
+			},
+			"response": []
+		}
+	]
+}
