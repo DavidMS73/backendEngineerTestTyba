@@ -3,5 +3,5 @@ module.exports = {
   urlMapsAPI:
     process.env.URlMAPSAPI ||
     "https://maps.googleapis.com/maps/api/place/nearbysearch/json",
-  radius: process.env.RADIUS || "1500",
+  radius: process.env.RADIUS || "1000",
 };
